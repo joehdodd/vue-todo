@@ -21,18 +21,18 @@ export default {
   name: 'app',
   data() {
     return {
-      fakeTodos: [
-        { task: 'Take out the trash' },
-        { task: 'Be cool' },
-        { task: 'Ride the train' },
-        { task: 'Life' },
-        { task: 'Other stuff' },
+      todos: [
+        { id: '5092f9jseanv', task: 'Take out the trash' },
+        { id: '39r20afjslsl', task: 'Be cool' },
+        { id: '12049asfddls', task: 'Ride the train' },
+        { id: '03289fj3i3il', task: 'Life' },
+        { id: '6if993fsjlkl', task: 'Other stuff' },
         {
+          id: '85583asdfkje',
           task: 'A really long task that will take up more space on the screen'
         },
-        { task: 'A task that should be below the fold?' }
+        { id: '217t13sldkjj', task: 'A task that should be below the fold?' }
       ],
-      todos: []
     };
   },
   methods: {
