@@ -1,10 +1,6 @@
 <template>
   <div id="app">
-    <form @submit.prevent="addTodo">
-      <input v-model="text">
-      <button>Add Todo</button>
-    </form>
-    <ToDoList :todos="todos"/>
+    <ToDoList :todos="todos" :addTodo="addTodo" />
   </div>
 </template>
 
@@ -21,12 +17,11 @@ export default {
         { task: 'Ride the train' },
         { task: 'Life' }
       ],
-      text: ''
     };
   },
   methods: {
-    addTodo() {
-      const { text, todos } = this;
+    addTodo(text) {
+      const { todos } = this;
       return text.length ? todos.push({ task: text }) : alert('Please enter some text.')
     }
   },
@@ -37,26 +32,39 @@ export default {
 </script>
 
 <style>
+body {
+  background: #edf0f5;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  display: grid;
+  grid-auto-flow: row;
+  align-items: center;
+  justify-items: center;
 }
 
-form,
 input,
 button {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: #2c3e50;
+  background: #edf0f5;
+  border: none;
+  border-radius: 3px;
+}
+
+input {
+  height: 28px;
+  width: 200px;
+  margin-right: 10px;
 }
 
 button {
-  border: none;
-  border-radius: 3px;
   height: 30px;
   width: 90px;
 }
