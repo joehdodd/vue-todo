@@ -5,7 +5,7 @@
       <button>Add Todo</button>
     </form>
     <ul>
-      <li v-for="todo in todos" :key="todo.task">{{todo.task}}</li>
+      <li class="todo" v-for="todo in todos" :key="todo.task">{{todo.task}}</li>
     </ul>
   </div>
 </template>
@@ -36,11 +36,16 @@ ul {
   padding: 0;
   display: grid;
   grid-auto-flow: row;
-  grid-gap: 10px;
+  max-height: 265px;
+  overflow-y: scroll;
 }
 
-li {
-  display: inline-block;
+.todo {
+  padding: 10px;
+}
+
+.todo:nth-child(odd) {
+  background: #edf0f5;
 }
 
 a {

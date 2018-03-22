@@ -15,7 +15,10 @@ export default {
         { task: 'Take out the trash' },
         { task: 'Be cool' },
         { task: 'Ride the train' },
-        { task: 'Life' }
+        { task: 'Life' },
+        { task: 'Other stuff'},
+        { task: 'A really long task that will take up more space on the screen'},
+        { task: 'A task that should be below the fold?'}
       ],
     };
   },
