@@ -10,7 +10,6 @@
 export default {
   name: 'ToDoList',
   props: {
-    msg: String,
     todos: Array
   }
 }
