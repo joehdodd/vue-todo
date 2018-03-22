@@ -1,31 +1,48 @@
 <template>
   <div id="app">
-    <ToDoList :todos="todos" :addTodo="addTodo" />
+    <ToDoList :todos="todos" :addTodo="addTodo" :removeTodo="removeTodo" />
   </div>
 </template>
 
 <script>
 import ToDoList from './components/ToDoList.vue';
 
+const uuidv4 = () => {
+  return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+    // eslint-disable-next-line
+    (
+      c ^
+      (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+    ).toString(16)
+  );
+};
+
 export default {
   name: 'app',
   data() {
     return {
-      todos: [
+      fakeTodos: [
         { task: 'Take out the trash' },
         { task: 'Be cool' },
         { task: 'Ride the train' },
         { task: 'Life' },
-        { task: 'Other stuff'},
-        { task: 'A really long task that will take up more space on the screen'},
-        { task: 'A task that should be below the fold?'}
+        { task: 'Other stuff' },
+        {
+          task: 'A really long task that will take up more space on the screen'
+        },
+        { task: 'A task that should be below the fold?' }
       ],
+      todos: []
     };
   },
   methods: {
     addTodo(text) {
-      const { todos } = this;
-      return text.length ? todos.push({ task: text }) : alert('Please enter some text.')
+      return text.length
+        ? (this.todos = [{ id: uuidv4(), task: text }, ...this.todos])
+        : alert('Please enter some text.');
+    },
+    removeTodo(id) {
+      return (this.todos = this.todos.filter(todo => todo.id !== id));
     }
   },
   components: {

@@ -5,7 +5,10 @@
       <button>Add Todo</button>
     </form>
     <ul>
-      <li class="todo" v-for="todo in todos" :key="todo.task">{{todo.task}}</li>
+      <li class="todo" v-for="todo in todos" :key="todo.task">
+        <span class="todo-task">{{todo.task}}</span>
+        <span class="todo-remove" @click="removeTodo( todo.id )">Done</span>
+      </li>
     </ul>
   </div>
 </template>
@@ -16,13 +19,14 @@ export default {
   props: {
     todos: Array,
     addTodo: Function,
+    removeTodo: Function
   },
   data() {
     return {
       inputText: ''
-    }
+    };
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -42,10 +46,21 @@ ul {
 
 .todo {
   padding: 10px;
+  display: grid;
+  grid-auto-flow: column;
 }
 
 .todo:nth-child(odd) {
   background: #edf0f5;
+}
+
+.todo-task {
+  justify-self: start;
+}
+
+.todo-remove {
+  cursor: pointer;
+  justify-self: end;
 }
 
 a {
@@ -58,6 +73,6 @@ a {
   min-height: 250px;
   padding: 16px;
   border-radius: 3px;
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.5);
 }
 </style>
