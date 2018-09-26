@@ -1,11 +1,13 @@
 <template>
   <div id="app">
-    <ToDoList :todos="todos" :addTodo="addTodo" :removeTodo="removeTodo" />
+    <ToDoList v-if="!showCompleted" :todos="todos" :addTodo="addTodo" :completeTodo="completeTodo" />
+    <Completed v-if="!!showCompleted" :completed="completed" />
   </div>
 </template>
 
 <script>
 import ToDoList from './components/ToDoList.vue';
+import Completed from './components/Completed.vue';
 
 const uuidv4 = () => {
   return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
@@ -33,6 +35,8 @@ export default {
         },
         { id: '217t13sldkjj', task: 'A task that should be below the fold?' }
       ],
+      completed: [],
+      showCompleted: false
     };
   },
   methods: {
@@ -41,12 +45,15 @@ export default {
         ? (this.todos = [{ id: uuidv4(), task: text }, ...this.todos])
         : alert('Please enter some text.');
     },
-    removeTodo(id) {
-      return (this.todos = this.todos.filter(todo => todo.id !== id));
+    completeTodo(id) {
+      let found = this.todos.find(todo => todo.id === id);
+      (this.completed = [found, ...this.completed]);
+      return this.todos = this.todos.filter(todo => todo.id !== id);
     }
   },
   components: {
-    ToDoList
+    ToDoList,
+    Completed
   }
 };
 </script>

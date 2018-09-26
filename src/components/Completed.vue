@@ -1,13 +1,13 @@
 <template>
   <div class="todos-container">
-    <form @submit.prevent="addTodo(inputText)">
+    <h3>Completed</h3>
+    <!-- <form @submit.prevent="addTodo(inputText)">
       <input v-model="inputText">
       <button>Add Todo</button>
-    </form>
+    </form> -->
     <ul>
-      <li class="todo" v-for="todo in todos" :key="todo.task">
+      <li class="todo" v-for="todo in completed" :key="todo.task">
         <span class="todo-task">{{todo.task}}</span>
-        <span class="todo-remove" @click="completeTodo( todo.id )">Done</span>
       </li>
     </ul>
   </div>
@@ -17,9 +17,9 @@
 export default {
   name: 'ToDoList',
   props: {
-    todos: Array,
+    completed: Array,
     addTodo: Function,
-    completeTodo: Function
+    removeTodo: Function
   },
   data() {
     return {
@@ -32,7 +32,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
-  margin: 40px 0 0;
+  margin: 0;
 }
 
 ul {
